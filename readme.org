@@ -1,0 +1,28 @@
+#+TITLE: org+ • [[https://travis-ci.org/0x0049/osd][https://travis-ci.org/0x0049/org-plus.svg?branch=master]]
+#+STARTUP: showeverything
+
+Additional configuration options for org-mode.
+
+** Features
+   - ~org+-mks-expert~
+     Set to ~t~ to enable an expert mode for anything that uses ~org-mks~ like
+     ~org-capture~ (inspired by the expert mode for ~org-use-fast-todo-selection~)
+   - ~org+-prevent-duplicate-state-changes~
+     Prevent duplicate state changes when set to ~t~.
+   - ~org+-start-states~
+     Switch to a start state when clocking in.
+   - ~org+-maybe-goto-capture-file~
+     For use with capture templates.
+   - Automatically load languages on demand for ~org-babel~.
+   - Language aliases for ~org-babel~.
+   - Update appointments on an idle timer (if[[https://github.com/0x0049/timer-plus][ timer+]] is loaded) when an agenda
+     file is saved.
+
+** Usage
+   I use [[https://github.com/jwiegley/use-package][use-package]] and [[https://github.com/raxod502/straight.el][straight.el]]:
+
+   #+begin_src elisp
+     (use-package org+
+       :straight (:host github :repo "0x0049/org-plus")
+       :after org)
+   #+end_src
