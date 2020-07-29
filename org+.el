@@ -86,6 +86,7 @@ The first will be used as the default start state."
 
 (add-hook 'org-blocker-hook #'org+--prevent-duplicate-states)
 
+;;;###autoload
 (defun org+-maybe-goto-capture-file ()
   "If not in an org file move to the default notes file, otherwise stay put.
 
@@ -241,6 +242,20 @@ If `timer+' is not loaded run immediately instead."
   (add-hook 'before-save-hook #'org+--appt-schedule t t))
 
 (add-hook 'org-mode-hook #'org+--hook-appt-schedule)
+
+(defvar org+--log-current-level nil)
+(defun org+--log-set-current-level ()
+  "Store the current entry level."
+  (setq org+--log-current-level (org-current-level)))
+
+(advice-add 'org-add-log-note :before #'org+--log-set-current-level)
+
+(defun org+--log-adjust-fill-column ()
+  "Adjust the fill column so the note will be correct wrapped when inserted."
+  (let ((offset (if org-adapt-indentation (+ org+--log-current-level 3) 2)))
+    (setq fill-column (- fill-column offset))))
+
+(add-hook 'org-log-buffer-setup-hook #'org+--log-adjust-fill-column)
 
 (provide 'org+)
 

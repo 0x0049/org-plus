@@ -15,8 +15,10 @@ Additional configuration options for org-mode.
      For use with capture templates.
    - Automatically load languages on demand for ~org-babel~.
    - Language aliases for ~org-babel~.
-   - Update appointments on an idle timer (if[[https://github.com/0x0049/timer-plus][ timer+]] is loaded) when an agenda
+   - Update appointments on an idle timer (if [[https://github.com/0x0049/timer-plus][timer+]] is loaded) when an agenda
      file is saved.
+   - Ensure loggged notes are correctly wrapped when using
+     ~org-adapt-indentation~.
 
 ** Usage
    I use [[https://github.com/jwiegley/use-package][use-package]] and [[https://github.com/raxod502/straight.el][straight.el]]:
