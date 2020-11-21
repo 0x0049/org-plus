@@ -65,7 +65,8 @@ The first will be used as the default start state."
 
 (defun org+--load-language (fn &optional arg info params)
   "Load language if not already done then call FN with ARG, INFO, and PARAMS."
-  (let* ((actual-language (intern (car info)))
+  (let* ((info (or info (org-babel-get-src-block-info)))
+         (actual-language (intern (car info)))
          (language (or (alist-get actual-language org+-babel-map) actual-language)))
     (unless (alist-get language org-babel-load-languages)
       (add-to-list 'org-babel-load-languages (cons language t))
