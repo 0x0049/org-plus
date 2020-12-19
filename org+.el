@@ -198,7 +198,9 @@ is selected, only the bare key is returned."
                         allowed-keys
                         (if buffer
                             prompt
-                          (concat "[a-z...]:Set\n" body special-body)))))
+                          (concat "[a-z...]:Set\n" body special-body))
+                        (when buffer
+                          (not (pos-visible-in-window-p (1- (point-max))))))))
                   (setq current (concat current pressed))
                   (cond
                    ((equal pressed "\C-g") (user-error "Abort"))
@@ -225,8 +227,8 @@ is selected, only the bare key is returned."
 
 If `timer+' is not loaded run immediately instead."
   (if (fboundp 'timer+-idle-debounce)
-        (timer+-idle-debounce #'org+--agenda-to-appt)
-      (org+--agenda-to-appt)))
+      (timer+-idle-debounce #'org+--agenda-to-appt)
+    (org+--agenda-to-appt)))
 
 (defun org+--appt-schedule ()
   "Generate appointments after a timer if the current file is an agenda file.
